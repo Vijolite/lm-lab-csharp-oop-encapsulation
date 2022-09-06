@@ -3,8 +3,8 @@ namespace Encapsulation.Models
 {
     public class WeatherReporter
     {
-        public string Location;
-        public double Temperature;
+        public string Location { get; set; }
+        public double Temperature { get; set; }
 
         public WeatherReporter(string location, double temperature)
         {
@@ -12,13 +12,17 @@ namespace Encapsulation.Models
             Temperature = temperature;
         }
 
-        public string Print()
+        public double ConvertToFahrenheit()
         {
-            double newTemp = (9.0 / 5.0) * Temperature + 32;
-            return $"I am in {Location} and it is {Check1()}. {Check2()}. The temperature in Fahrenheit is {newTemp}.";
+            return (9.0 / 5.0) * Temperature + 32;
         }
 
-        public string Check1()
+        public string GetWeatherInfo()
+        {
+            return $"I am in {Location} and it is {CheckLocation()}. {CheckTemperature()}. The temperature in Fahrenheit is {this.ConvertToFahrenheit()}.";
+        }
+
+        public string CheckLocation()
         {
             if (Location == "London")
             {
@@ -41,21 +45,21 @@ namespace Encapsulation.Models
             return "🔆";
         }
 
-        public string Check2()
+        public string CheckTemperature()
         {
             if (Temperature > 30)
             {
 
-                return "It's too hot 🥵!";
+                return "It's too hot!";
 
             }
             else if (Temperature < 10)
             {
 
-                return "It's too cold 🥶!";
+                return "It's too cold!";
 
             }
-            return "Ahhh...it's just right 😊!";
+            return "Ahhh...it's just right!";
         }
 
     }
