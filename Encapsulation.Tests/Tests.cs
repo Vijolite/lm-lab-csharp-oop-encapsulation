@@ -19,14 +19,14 @@ namespace Encapsulation.Tests
         public void TestCheckTemperatureHot()
         {
             var weatherRep = new WeatherReporter("London", 32);
-            weatherRep.CheckTemperature().Should().Be("It's too hot!");
+            weatherRep.GetTemperatureDescription().Should().Be("It's too hot!");
         }
 
         [TestMethod]
         public void TestCheckTemperatureCold()
         {
             var weatherRep = new WeatherReporter("London", 0);
-            weatherRep.CheckTemperature().Should().Be("It's too cold!");
+            weatherRep.GetTemperatureDescription().Should().Be("It's too cold!");
         }
     }
 }

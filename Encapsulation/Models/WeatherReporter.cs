@@ -3,8 +3,11 @@ namespace Encapsulation.Models
 {
     public class WeatherReporter
     {
-        public string Location { get; set; }
-        public double Temperature { get; set; }
+        public string Location { get; private set; }
+        public double Temperature { get; private set; }
+
+        private const int COLD_THRESHOLD_TEMPERATURE = 10;
+        private const int HOT_THRESHOLD_TEMPERATURE = 30;
 
         public WeatherReporter(string location, double temperature)
         {
@@ -19,7 +22,7 @@ namespace Encapsulation.Models
 
         public string GetWeatherInfo()
         {
-            return $"I am in {Location} and it is {CheckLocation()}. {CheckTemperature()}. The temperature in Fahrenheit is {this.ConvertToFahrenheit()}.";
+            return $"I am in {Location} and it is {CheckLocation()}. {GetTemperatureDescription()}. The temperature in Fahrenheit is {this.ConvertToFahrenheit()}.";
         }
 
         public string CheckLocation()
@@ -45,15 +48,15 @@ namespace Encapsulation.Models
             return "🔆";
         }
 
-        public string CheckTemperature()
+        public string GetTemperatureDescription()
         {
-            if (Temperature > 30)
+            if (Temperature > HOT_THRESHOLD_TEMPERATURE)
             {
 
                 return "It's too hot!";
 
             }
-            else if (Temperature < 10)
+            else if (Temperature < COLD_THRESHOLD_TEMPERATURE)
             {
 
                 return "It's too cold!";
